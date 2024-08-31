@@ -6,10 +6,8 @@ import os
 
 app = Flask(__name__)
 
-# Load the SentenceTransformer model
 model = SentenceTransformer('all-MiniLM-L6-v2')
 
-# Load the vector store
 vector_store_path = 'faiss_store.pkl'
 if os.path.exists(vector_store_path):
     with open(vector_store_path, 'rb') as f:
@@ -28,7 +26,6 @@ def index():
 
 @app.route('/chat', methods = ['POST'])
 def chat():
-    # Attempt to parse the JSON data from the request
     data = request.get_json(force=True, silent=True)
     
     print(data)
@@ -39,14 +36,11 @@ def chat():
 
     if vector_store is None:
         return jsonify({"error": "Vector store not initialized"}), 500
+        
+    user_embedding = model.encode([user_input])[0] 
 
-    # Generate embedding for the user query
-    user_embedding = model.encode([user_input])[0]  # Get the first (and only) embedding
-
-    # Retrieve the most relevant document
     docs = vector_store.similarity_search_by_vector(user_embedding, k=1)
 
-    # Prepare the response based on retrieved documents
     if docs:
         response = docs[0].page_content
     else:
