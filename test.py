@@ -1,13 +1,12 @@
 import requests
+import json
 
-# Define the URL and the request data
 url = "http://localhost:5000/chat"
-data = {
-    "message": "Tell me about Course 1"
+payload = {
+    "query": "What courses are available?",
+    "chat_history": []
 }
+headers = {"Content-Type": "application/json"}
 
-# Send the POST request
-response = requests.post(url, json=data)
-
-# Print the response
+response = requests.post(url, data=json.dumps(payload), headers=headers)
 print(response.json())
