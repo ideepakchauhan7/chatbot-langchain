@@ -16,12 +16,6 @@ This project is a simple RESTful API built with Flask that serves as a chatbot i
 - Python 3.6 or higher
 - `pip` package manager
 
-### Clone the Repository
-
-```bash
-git clone https://github.com/your-username/flask-chatbot-api.git
-cd flask-chatbot-api
-```
 ### Install Dependencies
 
 ```bash
