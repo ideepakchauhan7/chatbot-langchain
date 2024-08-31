@@ -22,4 +22,20 @@ This project is a simple RESTful API built with Flask that serves as a chatbot i
 pip install -r requirements.txt
 ```
 
+###Usage
+
+Step 1: Create and Save the Vector Store
+Step 2: Run the Flask Server
+```bash
+python app.py
+```
+Step 3: Send Requests to the API
+```bash
+curl -X POST http://localhost:5000/chat -H "Content-Type: application/json" -d '{"message": "Tell me about Course 1"}'
+```
+
+
+
+
+
 
